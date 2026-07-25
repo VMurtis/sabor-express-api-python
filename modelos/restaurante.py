@@ -47,3 +47,14 @@ class Restaurante:
         if isinstance(item,ItemCardapio):# verifica se o item pertence a classe ItemCardapio ou alguma classe que herda dela
             self._cardapio.append(item)
 
+    @property
+    def exibir_cardapio(self):
+        print(f'Cardapio do restaurante {self._nome}\n')
+        for i,item in enumerate(self._cardapio,start=1):
+            if hasattr(item,'descricao'):# verifica se o atributo existir no objeto. 
+                mensagem_prato = f'{i}. Nome: {item._nome} | Preço: R${item._preco} | Descrição: {item.descricao}'
+                print(mensagem_prato)
+            else:
+                mensagem_bebida = f'{i}. Nome: {item._nome} | Preço: R${item._preco} | Tamanho: {item.tamanho}'
+                print(mensagem_bebida)
+
