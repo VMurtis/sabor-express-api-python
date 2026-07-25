@@ -6,6 +6,6 @@ class ItemCardapio(ABC):
         self._nome = nome
         self._preco = preco
 
-    @abstractmethod
+    @abstractmethod # obriga as classes filhas a implementarem sua propria regra de desconto
     def aplicar_desconto(self):
         pass
