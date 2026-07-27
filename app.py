@@ -1,20 +1,11 @@
-from modelos.restaurante import Restaurante
-from modelos.cardapio.bebida import Bebida
-from modelos.cardapio.prato import Prato
+import requests
 
-restaurante_praca = Restaurante('praça', 'Gourmet')
+url = 'https://guilhermeonrails.github.io/api-restaurantes/restaurantes.json'
+response = requests.get(url)
+print(response)
 
-bebida_suco = Bebida('Suco de Melancia', 5.0,'grande')
-bebida_suco.aplicar_desconto()
-prato_paozinho = Prato('Paozinho',2.00,'O melhor pão da cidade')
-prato_paozinho.aplicar_desconto()
-
-restaurante_praca.adicionar_no_cardapio(bebida_suco)
-restaurante_praca.adicionar_no_cardapio(prato_paozinho)
-
-
-def main():
-    restaurante_praca.exibir_cardapio
-
-if __name__ == '__main__':
-    main()
+if response.status_code == 200:
+    dados_json = response.json()
+    print(dados_json)
+else:
+    print(f'O erro foi {response.status_code}')
